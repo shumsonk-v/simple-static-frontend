@@ -13,6 +13,13 @@ var concat = require('gulp-concat');
 // For optimizing our png and jpg images
 var tinypng = require('gulp-tinypng');
 
+var jsFiles = [
+      "./src/js/vendors/jquery-3.3.1.min.js",
+      "./src/js/components/*.js",
+      "./src/js/main.js",
+      "./src/js/app.js"
+];
+
 gulp.task('default', ['scss', 'js', 'images', 'html', 'watch']);
 
 gulp.task('html', function() {
@@ -30,7 +37,7 @@ gulp.task('scss', function() {
 });
 
 gulp.task('js', function() {
-   return gulp.src('./src/js/**/*.js')
+   return gulp.src(jsFiles)
       .pipe(concat('app.min.js'))
       .pipe(uglify())
       .pipe(gulp.dest('./public/js'));
